@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: productservice
+  
+  config:
+    import: optional:configserver:http://localhost:8083
+    
+  #spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+    producer:
+      retries: 0
+    template:
+      default-topic: my-topic

@@ -1,0 +1,53 @@
+server:
+  port: 9099
+
+spring:
+  application:
+    name: apigateway
+  main:
+    web-application-type: reactive  
+  config:
+    import: optional:configserver:http://localhost:8083  
+    
+  #cloud:
+ # output:
+ #   ansi:
+ #     enabled: always
+  cloud:
+  #  config:
+ #     enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+ #         lower-case-service-id: true
+      routes:
+      - id: customer3
+        uri: http://localhost:8080/api/v1/
+        predicates:
+        - Path=/api/v1/**
+      - id: productservice
+        uri: http://localhost:8095/
+        predicates:
+        - Path=/**
+        
+        
+        
+        
+        
+eureka:
+#  instance:
+#    hostname: localhost
+  client:
+ #   register-with-eureka: false
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9091/eureka/
+#    instance:
+      prefer-ip-address: true
+#management:
+ # endpoints:
+ #   web:
+ #     exposure:
+  #      include: "*"
+    

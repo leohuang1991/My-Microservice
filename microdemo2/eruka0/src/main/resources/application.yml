@@ -1,0 +1,19 @@
+server:
+  port: 9091
+  
+spring:
+  application:
+    name: eruka0
+  config:
+    import: optional:configserver:http://localhost:8083
+    
+#eureka:
+ # instance:
+  #  hostname: localhost
+    
+ # client:
+  #  register-with-eureka: false
+  #  fetch-registry: false
+  #  service-url:
+  #    defaultZone: http://127.0.0.1:9091/eureka/
+      
